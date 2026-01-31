@@ -62,27 +62,26 @@
 
 \usepackage[tikz,listings,memoization]{flsuite}
 \definecolor{deepblue}{RGB}{53,102,161}
-
 \usepackage[theorems, framedtheorems]{tssuite}
 
-\NewDocumentTheorem{theorem}{Теорема}{}
+\NewDocumentTheorem{theorem}{Теорема}{}[parent=section]
 \MakeFramedTheorem{Theorem}{theorem}
 
-\NewDocumentTheorem{lemma}{Лемма}{}
+\NewDocumentTheorem{lemma}{Лемма}{}[sharenumber=theorem]
 \MakeFramedTheorem{Lemma}{lemma}
 
-\NewDocumentTheorem{corollary}{Следствие}{}
+\NewDocumentTheorem{corollary}{Следствие}{}[sharenumber=theorem]
 \MakeFramedTheorem{Corollary}{corollary}
 
-\NewDocumentTheorem{proposition}{Предложение}{}
+\NewDocumentTheorem{proposition}{Предложение}{}[sharenumber=theorem]
 \MakeFramedTheorem{proprosition}{proposition}
 
-\NewDocumentTheorem{definition}{Определение}{}
+\NewDocumentTheorem{definition}{Определение}{}[sharenumber=theorem]
 \MakeFramedTheorem{Definition}{definition}
 
-\NewDocumentTheorem{example}{Пример}{}
-\NewDocumentTheorem{remark}{Замечание}{}
-\NewDocumentTheorem{notation}{Нотация}{}
+\NewStarredTheorem{example}{Пример}
+\NewStarredTheorem{remark}{Замечание}
+\NewStarredTheorem{notation}{Нотация}
 
 \usepackage[all]{xamsmath}
 \XAMSMathLoadPlugin{foundations}
