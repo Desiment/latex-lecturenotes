@@ -64,19 +64,19 @@
 \definecolor{deepblue}{RGB}{53,102,161}
 \usepackage[theorems, framedtheorems]{tssuite}
 
-\NewDocumentTheorem{theorem}{Теорема}{}[parent=section]
+\NewDocumentTheorem{theorem}{Теорема}[][parent=section]
 \MakeFramedTheorem{Theorem}{theorem}
 
-\NewDocumentTheorem{lemma}{Лемма}{}[sharenumber=theorem]
+\NewDocumentTheorem{lemma}{Лемма}[][sharenumber=theorem]
 \MakeFramedTheorem{Lemma}{lemma}
 
-\NewDocumentTheorem{corollary}{Следствие}{}[sharenumber=theorem]
+\NewDocumentTheorem{corollary}{Следствие}[][sharenumber=theorem]
 \MakeFramedTheorem{Corollary}{corollary}
 
-\NewDocumentTheorem{proposition}{Предложение}{}[sharenumber=theorem]
+\NewDocumentTheorem{proposition}{Предложение}[][sharenumber=theorem]
 \MakeFramedTheorem{proprosition}{proposition}
 
-\NewDocumentTheorem{definition}{Определение}{}[sharenumber=theorem]
+\NewDocumentTheorem{definition}{Определение}[][sharenumber=theorem]
 \MakeFramedTheorem{Definition}{definition}
 
 \NewStarredTheorem{example}{Пример}
