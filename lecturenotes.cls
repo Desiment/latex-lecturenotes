@@ -76,12 +76,12 @@
 \NewDocumentTheorem{proposition}{Предложение}[][sharenumber=theorem]
 \MakeFramedTheorem{proprosition}{proposition}
 
-\NewDocumentTheorem{definition}{Определение}[][sharenumber=theorem]
+\NewDocumentTheorem{definition}{Определение}[][sharenumber=theorem, style=definition]
 \MakeFramedTheorem{Definition}{definition}
 
-\NewStarredTheorem{example}{Пример}
-\NewStarredTheorem{remark}{Замечание}
-\NewStarredTheorem{notation}{Нотация}
+\NewStarredTheorem{example}{Пример}[style=definition]
+\NewStarredTheorem{notation}{Нотация}[style=definition]
+\NewStarredTheorem{remark}{Замечание}[style=remark]
 
 \usepackage[all]{xamsmath}
 \XAMSMathLoadPlugin{foundations}
