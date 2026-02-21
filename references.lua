@@ -11,7 +11,6 @@ ReferencesConfiguration = {
 	  },
 	  hypersetup = {
 		breaklinks=true,
-		hyperindex=true,
 		colorlinks=true,
 		hidelinks=false,
 		unicode=true,
@@ -20,7 +19,6 @@ ReferencesConfiguration = {
 		bookmarksopen=false,
 		linktocpage=true,
 		plainpages=false,
-		pdfpagelabels=true,
 		-- Link colors
 		urlcolor='cyan',
 		linkcolor='deepblue',
