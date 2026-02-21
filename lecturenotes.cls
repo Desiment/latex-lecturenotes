@@ -18,9 +18,6 @@
 \setmainlanguage{russian}
 \setotherlanguage{english}
 
-% Smart quotes based on current language
-\RequirePackage[autostyle]{csquotes}
-
 % ============================================================================
 % LAYOUT OPTIONS
 % ============================================================================
@@ -91,6 +88,10 @@
 \XAMSMathLoadPlugin{probability}
 
 \usepackage[configuration=references.lua]{refsuite}
+
+% Smart quotes based on current language
+\RequirePackage[autostyle]{csquotes}
+
 
 \AtBeginDocument{%
     \allowdisplaybreaks
