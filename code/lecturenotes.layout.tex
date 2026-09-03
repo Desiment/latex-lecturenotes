@@ -1,0 +1,73 @@
+% ============================================================================
+% LAYOUT OPTIONS
+% ============================================================================
+%
+% Page geometry, chapter headings, and running headers for two-sided lecture
+% notes. The public class file loads this module after localization.
+
+% ----------------------------------------------------------------------------
+% Dependencies
+% ----------------------------------------------------------------------------
+%
+% etoc, epigraph, and titlesec support chapter-level lecture structure. geometry
+% owns page dimensions and binding margins.
+
+\RequirePackage{etoc}
+\RequirePackage{geometry}
+\RequirePackage{epigraph}
+\RequirePackage[pagestyles]{titlesec}
+
+% ----------------------------------------------------------------------------
+% Page Geometry
+% ----------------------------------------------------------------------------
+%
+% The second geometry call intentionally sets the compact lecture-note layout
+% used by current examples.
+
+\geometry{%
+  left=2cm,
+  right=2cm,
+  top=2cm,
+  bottom=2cm,
+  bindingoffset=0cm
+}
+
+\geometry{%
+  a4paper,
+  margin=1cm,
+  includefoot,
+  includehead
+}
+
+% ----------------------------------------------------------------------------
+% Chapter And Page Style
+% ----------------------------------------------------------------------------
+%
+% Framed chapter headings make lecture boundaries visually distinct. The custom
+% page style prints chapter titles on verso pages and section titles on recto
+% pages.
+
+\titleformat{\chapter}[frame]{\Large}{%
+  \filright
+  \footnotesize
+  \enspace ГЛАВА~\arabic{chapter}\enspace%
+}{1.5ex}{\bfseries\filcenter}
+
+\newpagestyle{headedpage}{%
+    \headrule
+    \sethead[\thepage][Глава~\thechapter. \chaptertitle][]%
+        {}{\sectiontitle}{\thepage}%
+}
+
+% ----------------------------------------------------------------------------
+% Begin-Document Setup
+% ----------------------------------------------------------------------------
+%
+% allowdisplaybreaks supports long lecture derivations. The TikZ default line
+% width keeps figures visually consistent across examples.
+
+\AtBeginDocument{%
+    \allowdisplaybreaks
+    \pagestyle{headedpage}
+    \tikzset{every picture/.style={line width=0.75pt}}%
+}

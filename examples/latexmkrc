@@ -1,0 +1,11 @@
+$pdf_mode  = 4;
+$aux_dir   = '.build';
+$out_dir   = '.';
+$clean_ext = 'out toc bbl bcf blg run.xml idx ind ilg thlist loc lol pyg';
+
+$lualatex = 'lualatex %O -halt-on-error -synctex=1 --shell-escape %S';
+
+ensure_path('TEXINPUTS', '../.dependencies//');
+ensure_path('LUAINPUTS', '../.dependencies//');
+ensure_path('TEXINPUTS', '..//');
+ensure_path('LUAINPUTS', '..//');

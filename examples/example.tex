@@ -1,0 +1,225 @@
+\documentclass{lecturenotes}
+
+\SetReferencesConfiguration{
+  hyperref = true,
+  hyperref/options = { unicode, hyperindex, pdfpagelabels },
+  hyperref/setup = {
+    breaklinks,
+    colorlinks,
+    linktocpage,
+    urlcolor = blue,
+    linkcolor = deepblue,
+    filecolor = magenta,
+    citecolor = blue,
+    pdftitle = {Пример lecture notes},
+    pdfauthor = {Desiment}
+  },
+  shortrefs = {
+    picref = рис.,
+    tabref = табл.,
+    secref = разд.,
+    lstref = листинг
+  },
+  zref-clever = true,
+  zref-clever/setup = { lang = russian },
+  azcref = true,
+  biblatex = true,
+  biblatex/options = { backend = biber, style = numeric, sorting = nyt, defernumbers = true },
+  biblatex/path = .,
+  biblatex/bibliographies = {
+    { name = main, title = {Список литературы}, files = example.bib },
+    { name = online, title = {Онлайн-ресурсы}, files = example-online.bib }
+  },
+  indexes = true,
+  indexes/options = { makeindex, noautomatic },
+  indexes/list = {
+    { name = notation, title = {Список обозначений}, intoc, columns = 2 },
+    { title = {Предметный указатель}, intoc, columns = 2 }
+  }
+}
+
+\title{Демонстрационные лекционные заметки}
+\author{Desiment}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Инструменты для математического текста}
+
+\section{Сюжет примера}
+\label{sec:story}
+
+Этот файл показывает, как класс \texttt{lecturenotes} собирает вместе
+\texttt{tssuite}, \texttt{xamsmath}, \texttt{flsuite} и \texttt{refsuite}.
+Короткие ссылки создаются конфигурацией \texttt{refsuite}: далее мы будем
+ссылаться на \picref{fig:markov-chain}, \tabref{tab:operators},
+\lstref{lst:recursion} и \secref{sec:references}.
+
+\begin{definition}[note=Дискретная случайная величина,label=def:random-variable]
+Случайная величина $X$ называется дискретной, если множество ее значений не
+более чем счетно и для любого $A \subseteq \R$ вероятность события
+$\set{X \in A}$ равна сумме вероятностей отдельных атомов.
+\end{definition}
+
+\begin{Theorem}[Формула полной вероятности][label=thm:total-probability]
+Пусть события $H_1,\dots,H_n$ образуют разбиение пространства элементарных
+исходов и $\P(H_i)>0$. Тогда для любого события $A$ верна формула
+\[
+  \P(A)=\sum_{i=1}^n \P(A | H_i)\P(H_i).
+\]
+\zlabel{zthm:total-probability}
+\end{Theorem}
+
+В силу \azcref{zthm:total-probability} вычисление сложной вероятности можно
+разбить на несколько условных вычислений. Обычная ссылка на тот же результат:
+теорема~\ref{thm:total-probability}.
+
+\begin{Lemma}[Линейность математического ожидания][label=lm:expectation]
+Для интегрируемых случайных величин $X$ и $Y$ и чисел $a,b\in\R$ выполнено
+\[
+  \E[aX+bY] = a\E[X] + b\E[Y].
+\]
+\end{Lemma}
+
+\begin{remark}
+Фреймированные окружения удобны для ключевых утверждений, а обычные окружения
+подходят для промежуточных фактов и упражнений в тексте лекции.
+\end{remark}
+
+\section{Нотация xamsmath}
+\label{sec:xamsmath}
+
+Пакет \texttt{xamsmath} загружен классом со всеми основными плагинами. Он дает
+единый стиль для множеств, алгебры, анализа, комбинаторики и вероятностей.
+
+\index[notation]{$\N$}\index[notation]{$\R$}\index{математическая нотация}
+\begin{align*}
+  \set{x \in \R | x > 0} &\quad \text{множество положительных чисел}, &
+  \card{A} &\quad \text{мощность множества}, \\
+  \N,\Z,\Q,\R,\C &\quad \text{стандартные числовые множества}, &
+  \norm{v}^2 &= \spr{v}{v}.
+\end{align*}
+
+Для анализа и вероятностей доступны компактные команды:
+\begin{align*}
+  \od{y}{x} &= 2x, &
+  \pd{u}{t} &= \Delta u, \\
+  \P(A | B) &= \frac{\P(A\cap B)}{\P(B)}, &
+  \E[\Cov{X}{Y} | Z] &= 0.
+\end{align*}
+
+Комбинаторные обозначения остаются читаемыми даже в длинных формулах:
+\[
+  \sum_{k=0}^n \Stirling{n}{k}\risef{x}^k = x^n,
+  \qquad
+  \fallf{x}^{m+n}=\fallf{x}^{m}\fallf{x-m}^{n}.
+\]
+
+\section{Графика, таблицы и листинги}
+\label{sec:floats}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=stealth, node distance=30mm]
+    \node[draw, circle, fill=blue!15] (a) {$0$};
+    \node[draw, circle, fill=green!15, right=of a] (b) {$1$};
+    \node[draw, circle, fill=orange!15, below=of b] (c) {$2$};
+    \draw[->, thick] (a) to[bend left] node[above] {$p$} (b);
+    \draw[->, thick] (b) to[bend left] node[below] {$q$} (a);
+    \draw[->, thick] (b) -- node[right] {$1-q$} (c);
+    \draw[->, thick] (c) edge[loop right] node {$1$} (c);
+  \end{tikzpicture}
+  \caption{Небольшая цепь Маркова, набранная через TikZ из \texttt{flsuite}.}
+  \label{fig:markov-chain}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzcd}[row sep=large, column sep=large]
+    V \arrow[r] \arrow[d] & W \arrow[d] \\
+    V' \arrow[r] & W'
+  \end{tikzcd}
+  \caption{Коммутативная диаграмма через \texttt{tikz-cd}.}
+  \label{fig:diagram}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.78\linewidth,
+      height=6cm,
+      grid=both,
+      xlabel={$x$},
+      ylabel={$f(x)$},
+      legend pos=north west
+    ]
+      \addplot[deepblue, thick, domain=-2:2, samples=100] {exp(-x^2)};
+      \addplot[red!70!black, thick, domain=-2:2, samples=100] {x^2/4};
+      \legend{$e^{-x^2}$, $x^2/4$}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{График, построенный средствами PGFPlots.}
+  \label{fig:plot}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Несколько операторов из \texttt{xamsmath}.}
+  \label{tab:operators}
+  \begin{tabular}{lll}
+    \toprule
+    Область & Команда & Результат \\
+    \midrule
+    Алгебра & \verb|\rk(A)| & $\rk(A)$ \\
+    Анализ & \verb|\grad f| & $\grad f$ \\
+    Вероятность & \verb|\D[X]| & $\D[X]$ \\
+    Комбинаторика & \verb|\multbinom{n}{k}| & $\multbinom{n}{k}$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{listing}[htbp]
+\begin{minted}{python}
+def total_probability(priors, conditionals):
+    """Return sum_i P(A | H_i) P(H_i)."""
+    return sum(p * c for p, c in zip(priors, conditionals))
+
+priors = [0.2, 0.5, 0.3]
+conditionals = [0.1, 0.4, 0.8]
+print(total_probability(priors, conditionals))
+\end{minted}
+\caption{Минимальный расчет формулы полной вероятности.}
+\label{lst:recursion}
+\end{listing}
+
+\section{refsuite: ссылки, библиография и индексы}
+\label{sec:references}
+
+Конфигурация \texttt{refsuite} в преамбуле этого файла написана через l3-ключи.
+Она создает короткие команды ссылок, подключает \texttt{biblatex}, включает
+\texttt{zref-clever} и настраивает два указателя. Классические источники по
+\TeX{} и \LaTeX{} удобно цитировать прямо в лекции~\cite{knuth1984texbook,lamport1994latex},
+а графические примеры естественно связываются с TikZ~\cite{tantau2013tikz,ctanpgf}.
+
+\index{refsuite}\index{короткие ссылки}\index[notation]{$\P(A \mid B)$}
+Ссылки читаются как обычный текст: \picref{fig:plot} содержит график,
+\tabref{tab:operators} перечисляет команды, а \lstref{lst:recursion} показывает
+короткий вычислительный фрагмент.
+
+\clearpage
+\chapter*{Справочные списки}
+\addcontentsline{toc}{chapter}{Справочные списки}
+
+\listofkeytheorems[title={Список теорем}]
+
+\printbibliographymain
+\printbibliographyonline
+
+\printindexnotation
+\printindex
+
+\end{document}

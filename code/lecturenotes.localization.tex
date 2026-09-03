@@ -1,0 +1,28 @@
+% ============================================================================
+% LOCALIZATION
+% ============================================================================
+%
+% Font and language setup shared by lecture-note documents. The class requires
+% LuaLaTeX because fontspec and polyglossia need a Unicode engine.
+
+% ----------------------------------------------------------------------------
+% Font Setup
+% ----------------------------------------------------------------------------
+%
+% CMU fonts preserve Computer Modern-style output while supporting Cyrillic text.
+
+\RequirePackage{fontspec}
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+
+% ----------------------------------------------------------------------------
+% Language Setup
+% ----------------------------------------------------------------------------
+%
+% Russian is the primary language for headings and theorem names. English remains
+% available for examples, bibliography entries, and code-adjacent prose.
+
+\RequirePackage[babelshorthands]{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}

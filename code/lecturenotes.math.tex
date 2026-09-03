@@ -1,0 +1,91 @@
+% ============================================================================
+% MATHEMATICS, THEOREMS, AND REFERENCES
+% ============================================================================
+%
+% Mathematical notation, theorem environments, framed theorem variants, and
+% reference helpers used by lecture-note documents.
+
+% ----------------------------------------------------------------------------
+% Dependencies
+% ----------------------------------------------------------------------------
+%
+% flsuite provides TikZ/listing/memoization integrations. tssuite supplies the
+% theorem declaration helpers and framed theorem wrappers used below.
+
+\RequirePackage[tikz,listings,memoization]{flsuite}
+\definecolor{deepblue}{RGB}{53,102,161}
+\RequirePackage[theorems, framedtheorems]{tssuite}
+
+% ----------------------------------------------------------------------------
+% User Environments
+% ----------------------------------------------------------------------------
+%
+% theorem, lemma, corollary, proposition, definition
+%
+% Purpose:
+%   Numbered theorem-like environments for lecture notes. Lemma, corollary,
+%   proposition, and definition share the theorem counter; theorem resets by
+%   section.
+%
+% Usage:
+%   \begin{theorem} ... \end{theorem}
+%   \begin{definition} ... \end{definition}
+
+\NewDocumentTheorem{theorem}{Теорема}[][parent=section]
+\MakeFramedTheorem{Theorem}{theorem}
+
+\NewDocumentTheorem{lemma}{Лемма}[][sharenumber=theorem]
+\MakeFramedTheorem{Lemma}{lemma}
+
+\NewDocumentTheorem{corollary}{Следствие}[][sharenumber=theorem]
+\MakeFramedTheorem{Corollary}{corollary}
+
+\NewDocumentTheorem{proposition}{Предложение}[][sharenumber=theorem]
+\MakeFramedTheorem{Proposition}{proposition}
+
+\NewDocumentTheorem{definition}{Определение}[][sharenumber=theorem]
+\MakeFramedTheorem{Definition}{definition}
+
+% example, remark, notation
+%
+% Purpose:
+%   Unnumbered theorem-like environments for explanatory examples, remarks, and
+%   notation callouts.
+%
+% Usage:
+%   \begin{example} ... \end{example}
+
+\NewStarredTheorem{example}{Пример}
+\NewStarredTheorem{remark}{Замечание}
+\NewStarredTheorem{notation}{Нотация}
+
+% ----------------------------------------------------------------------------
+% Math Notation Plugins
+% ----------------------------------------------------------------------------
+%
+% xamsmath provides the shared notation layer used in examples. The selected
+% plugins cover foundations, algebra, calculus, combinatorics, and probability.
+
+\RequirePackage[all]{xamsmath}
+\XAMSMathLoadPlugin{foundations}
+\XAMSMathLoadPlugin{algebra}
+\XAMSMathLoadPlugin{calculus}
+\XAMSMathLoadPlugin{combinatorics}
+\XAMSMathLoadPlugin{probability}
+
+% ----------------------------------------------------------------------------
+% References
+% ----------------------------------------------------------------------------
+%
+% refsuite is loaded without class-level configuration so documents and examples
+% can choose their own reference-key setup with \SetReferencesConfiguration.
+
+\RequirePackage{refsuite}
+
+% ----------------------------------------------------------------------------
+% Quote Handling
+% ----------------------------------------------------------------------------
+%
+% Load after fvextra/minted dependencies to avoid lineno warnings.
+
+\RequirePackage[autostyle]{csquotes}
