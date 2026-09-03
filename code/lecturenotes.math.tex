@@ -43,7 +43,7 @@
 \NewDocumentTheorem{proposition}{Предложение}[][sharenumber=theorem]
 \MakeFramedTheorem{Proposition}{proposition}
 
-\NewDocumentTheorem{definition}{Определение}[][sharenumber=theorem]
+\NewDocumentTheorem{definition}{Определение}[][sharenumber=theorem, style=definition]
 \MakeFramedTheorem{Definition}{definition}
 
 % example, remark, notation
@@ -55,9 +55,9 @@
 % Usage:
 %   \begin{example} ... \end{example}
 
-\NewStarredTheorem{example}{Пример}
-\NewStarredTheorem{remark}{Замечание}
-\NewStarredTheorem{notation}{Нотация}
+\NewStarredTheorem{example}{Пример}[style=definition]
+\NewStarredTheorem{notation}{Нотация}[style=definition]
+\NewStarredTheorem{remark}{Замечание}[style=remark]
 
 % ----------------------------------------------------------------------------
 % Math Notation Plugins
